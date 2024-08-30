@@ -15,6 +15,7 @@ client/*.local
 
 # Server
 server/node_modules
+server/dist
 
 # Common
 node_modules
