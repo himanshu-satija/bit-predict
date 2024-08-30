@@ -1,24 +1,14 @@
 import { Authenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-// import BitPredict from "./components/BitPredict";
-import "./App.css";
+import "./app.css";
+import BitPredict from "./components/bit-predict";
+import BitPredictLogo from "./assets/bit-predict.png";
 
 function App() {
   return (
-    <Authenticator>
-      {({ signOut, user }) => (
-        <div className="App">
-          <header>
-            <h1>Welcome, {user?.username}!</h1>
-            <button onClick={signOut}>Sign out</button>
-          </header>
-          <main>
-            Test
-            {/* <BitPredict /> */}
-          </main>
-        </div>
-      )}
-    </Authenticator>
+    <div>
+      <img src={BitPredictLogo} alt="BitPredict Logo" className="logo" />
+      <BitPredict />
+    </div>
   );
 }
 
