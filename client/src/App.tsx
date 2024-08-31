@@ -1,15 +1,27 @@
-import { Authenticator } from "@aws-amplify/ui-react";
-import "./app.css";
+import "./styles/app.css";
 import BitPredict from "./components/bit-predict";
-import BitPredictLogo from "./assets/bit-predict.png";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/login";
+import Signup from "./components/signup";
+import PrivateRoute from "./components/private-routes";
+import { AuthProvider } from "./contexts/auth-context";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <img src={BitPredictLogo} alt="BitPredict Logo" className="logo" />
-      <BitPredict />
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/game" element={<BitPredict />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

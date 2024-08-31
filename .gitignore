@@ -20,6 +20,7 @@ server/dist
 # Common
 node_modules
 .DS_Store
+.env
 
 # Editor directories and files
 .vscode/*
