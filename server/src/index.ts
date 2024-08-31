@@ -101,6 +101,7 @@ app.post("/login", async (req: Request, res: Response) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Set to true in production
       sameSite: "none",
+      domain: new URL(CLIENT_URL).hostname.split(".").slice(-2).join("."),
       maxAge: 60 * 60 * 1000, // 1 hour
     });
 
