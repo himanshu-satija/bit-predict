@@ -102,10 +102,6 @@ app.post("/login", async (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === "production", // Set to true in production
       sameSite: "none",
       maxAge: 60 * 60 * 1000, // 1 hour
-      domain:
-        process.env.NODE_ENV === "production"
-          ? process.env.APP_DOMAIN
-          : undefined,
     });
 
     res.json({ message: "Login successful" });
@@ -117,7 +113,12 @@ app.post("/login", async (req: Request, res: Response) => {
 
 // Logout Route
 app.post("/logout", (_req: Request, res: Response) => {
-  res.clearCookie("token");
+  res.cookie("token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+    expires: new Date(0),
+  });
   res.json({ message: "Logout successful" });
 });
 
