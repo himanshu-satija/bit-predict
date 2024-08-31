@@ -30,16 +30,16 @@ const Signup: React.FC = () => {
         body: JSON.stringify({ username, password }),
       });
       navigate("/login");
-    } catch (err) {
-      setError(err.message || "Error creating account. Please try again.");
+    } catch (err: any) {
+      setError(err?.message || "Error creating account. Please try again.");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background">
+    <div className="flex flex-col items-center justify-center bg-background">
       <div className="w-full max-w-md p-8 space-y-8 bg-card rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center text-foreground">
-          Sign Up
+          Sign Up For BitPredict
         </h2>
         <form onSubmit={handleSignup} className="space-y-6">
           <div className="space-y-4">
