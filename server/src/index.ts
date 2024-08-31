@@ -12,7 +12,10 @@ const app: Express = express();
 
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 const CRYPTO_API_URL =
-  "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=YOUR_API_KEY";
+  "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD&api_key=" +
+  process.env.CRYPTO_API_KEY;
+
+console.log(CLIENT_URL, "CLIENT_URL");
 
 app.use(
   cors({
