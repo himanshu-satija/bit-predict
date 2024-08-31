@@ -104,7 +104,7 @@ app.post("/login", async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 1000, // 1 hour
       domain:
         process.env.NODE_ENV === "production"
-          ? new URL(CLIENT_URL).hostname
+          ? process.env.APP_DOMAIN
           : undefined,
     });
 
