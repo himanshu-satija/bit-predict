@@ -100,7 +100,9 @@ app.post("/login", async (req: Request, res: Response) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Set to true in production
+      sameSite: "none",
       maxAge: 60 * 60 * 1000, // 1 hour
+      domain: process.env.NODE_ENV === "production" ? CLIENT_URL : undefined,
     });
 
     res.json({ message: "Login successful" });
