@@ -176,7 +176,7 @@ const BitPredict: React.FC = () => {
                 variants={scoreMessageVariants}
                 transition={{ duration: 0.5 }}
               >
-                <Alert variant={scoreChange > 0 ? "default" : "destructive"}>
+                <Alert variant={scoreChange > 0 ? "success" : "destructive"}>
                   <AlertTitle>Score Update</AlertTitle>
                   <AlertDescription>
                     {getScoreMessage(scoreChange)}
