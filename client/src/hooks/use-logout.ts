@@ -12,6 +12,7 @@ export const useLogout = () => {
         method: "POST",
       });
 
+      localStorage.removeItem("token"); // Remove token from localStorage
       setIsAuthenticated(false);
       navigate("/login"); // Redirect to login page
     } catch (err) {

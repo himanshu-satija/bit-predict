@@ -96,16 +96,7 @@ app.post("/login", async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-    // Set JWT as HttpOnly cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Set to true in production
-      sameSite: "none",
-      domain: ".onrender.com",
-      maxAge: 60 * 60 * 1000, // 1 hour
-    });
-
-    res.json({ message: "Login successful" });
+    res.json({ message: "Login successful", token });
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ message: "Server error" });
@@ -125,7 +116,8 @@ app.post("/logout", (_req: Request, res: Response) => {
 
 // Middleware to check authentication
 const authenticateToken = (req: Request, res: Response, next: () => void) => {
-  const token = req.cookies.token;
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) return res.status(401).json({ message: "Unauthorized" });
 

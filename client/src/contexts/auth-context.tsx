@@ -24,16 +24,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     const checkAuthStatus = async () => {
-      try {
-        const response = await fetchJson("/auth-check");
-        if (response?.isAuthenticated) {
-          setIsAuthenticated(true);
-          setUsername(response.username);
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = await fetchJson("/auth-check");
+          if (response?.isAuthenticated) {
+            setIsAuthenticated(true);
+            setUsername(response.username);
+          }
+        } catch (error) {
+          console.error("Error checking authentication status:", error);
+          setIsAuthenticated(false);
+          setUsername(null);
         }
-      } catch (error) {
-        console.error("Error checking authentication status:", error);
-        setIsAuthenticated(false);
-        setUsername(null);
       }
     };
 

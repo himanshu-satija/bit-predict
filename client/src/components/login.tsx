@@ -32,6 +32,7 @@ const Login: React.FC = () => {
       });
 
       if (response.message === "Login successful") {
+        localStorage.setItem("token", response.token); // Store token in localStorage
         setIsAuthenticated(true);
         setAuthUsername(username);
         navigate("/game");

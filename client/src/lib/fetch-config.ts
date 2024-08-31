@@ -4,9 +4,14 @@ export const fetchJson = async (
   path: string,
   options: RequestInit = {}
 ): Promise<any> => {
-  const defaultHeaders = {
+  const defaultHeaders: any = {
     "Content-Type": "application/json",
   };
+
+  const token = localStorage.getItem("token");
+  if (token) {
+    defaultHeaders["Authorization"] = `Bearer ${token}`;
+  }
 
   options.headers = {
     ...defaultHeaders,
