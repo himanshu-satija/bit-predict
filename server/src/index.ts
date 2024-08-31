@@ -102,7 +102,10 @@ app.post("/login", async (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === "production", // Set to true in production
       sameSite: "none",
       maxAge: 60 * 60 * 1000, // 1 hour
-      domain: process.env.NODE_ENV === "production" ? CLIENT_URL : undefined,
+      domain:
+        process.env.NODE_ENV === "production"
+          ? new URL(CLIENT_URL).hostname
+          : undefined,
     });
 
     res.json({ message: "Login successful" });

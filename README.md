@@ -26,7 +26,7 @@ BitPredict is an interactive web application that allows users to predict Bitcoi
 1. Clone the repository:
 
    ```
-   git clone https://github.com/yourusername/bitpredict.git
+   git clone https://github.com/himanshu-satija/bitpredict.git
    cd bitpredict
    ```
 
@@ -44,9 +44,17 @@ BitPredict is an interactive web application that allows users to predict Bitcoi
    DATABASE_URL=postgresql://username:password@localhost:5432/bitpredict
    SECRET_KEY=your_jwt_secret_key
    CRYPTO_API_KEY=your_cryptocompare_api_key
+   CLIENT_URL=http://localhost:5173
    ```
 
-4. Set up the database:
+4. Set up client-side environment variables:
+   Create a `.env.local` file in the `client` directory with the following content:
+
+   ```
+   VITE_BASE_URL=http://localhost:3000
+   ```
+
+5. Set up the database:
 
    - Create a PostgreSQL database named `bitpredict`
    - Run the following SQL command to create the `users` table:
@@ -63,7 +71,7 @@ BitPredict is an interactive web application that allows users to predict Bitcoi
    );
    ```
 
-5. Start the development servers:
+6. Start the development servers:
 
    ```
    npm run dev
@@ -71,7 +79,7 @@ BitPredict is an interactive web application that allows users to predict Bitcoi
 
    This will start both the client (on port 5173) and the server (on port 3000) concurrently.
 
-6. Open your browser and navigate to `http://localhost:5173` to view the application.
+7. Open your browser and navigate to `http://localhost:5173` to view the application.
 
 ## Deployment
 
